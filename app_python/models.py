@@ -1,4 +1,4 @@
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.db import models
 
 # Create your models here.
@@ -11,6 +11,9 @@ class User(AbstractUser):
     password = models.CharField(max_length=100)
     phone = models.CharField(max_length=13)
     created_at = models.DateTimeField(auto_now_add=True)
+    groups = models.ManyToManyField(Group, related_name='user_groups')
+    user_permissions = models.ManyToManyField(
+        Permission, related_name='user_permissions')
 
     class Meta:
         db_table = 'users'
