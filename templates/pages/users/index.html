@@ -1,0 +1,59 @@
+{% extends '../../_base.html' %}
+{% load poll_extra %}
+
+{% block title %}Voir les notes{% endblock title %}
+{% block header %}
+<a href="{% url 'index' %}" class="btn btn-primary">Retour</a>
+ <a href="{% url 'upload_users' %}" class="btn btn-success">upload csv</a>
+{% endblock %}
+{% block content %}
+{% for message in messages %}
+<div
+    class="alert  {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}: alert-danger {% else %} alert-success {%  endif %} ">
+    <div {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </div>
+</div>
+{% endfor %}
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">username</th>
+            <th scope="col">Role</th>
+            <th scope="col"></th>
+            {% if request.user|has_group:"coordinator" %}
+            <th scope="col2">Actions</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <th>{{user.username}}</th>
+            {% if user|has_group:"coordinator" %}
+            <td>Coordinateur</td>
+            <td></td>
+            {% elif user|has_group:"professor" %}
+            <td>Professeur</td>
+            <td></td>
+            {% else %}
+            <td>Etudiant</td>
+            <td>{{ user.class }}</td>
+            {% endif %}
+
+            {% if request.user|has_group:"coordinator" %}
+            <td>
+                <a href="{% url 'update_users' user_id=user.id %}" class="btn btn-success">Editer</a>
+                <a href="{% url 'delete_users' user_id=user.id %}" class="btn btn-danger">Supprimer</a>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div class="container">
+    <div class="row float-right">
+        <a href="{% url 'create_users' %}" class="btn btn-primary">
+            Créér un utilisateur
+        </a>
+    </div>
+</div>
+{% endblock content %}
