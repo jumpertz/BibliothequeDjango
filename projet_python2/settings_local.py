@@ -4,7 +4,7 @@ DATABASES_LOCAL = {
         'NAME': 'python_db',
         'USER': 'root',
         'PASSWORD': 'password',
-        'HOST': 'db',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }

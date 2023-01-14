@@ -1,25 +1,26 @@
+version: '3.9'
 services:
   db:
     image: postgres
+    restart: always
     volumes:
-      - django-data:/var/lib/postgresql/data
+      - 'django-data:/var/lib/postgresql/data'
     environment:
       - POSTGRES_DB=python_db
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=password
-
+    ports:
+      - '5432:5432'
   web:
     build: .
-    command: python3 manage.py runserver 0.0.0.0:8000
+    command: 'python manage.py runserver 0.0.0.0:8000'
+    restart: always
     volumes:
-      - .:/code
+      - '.:/code'
     ports:
-      - "8000:8000"
-    environment:
-      - POSTGRES_NAME=python_db
-      - POSTGRES_USER=root
-      - POSTGRES_PASSWORD=password
+      - '8000:8000'
     depends_on:
       - db
+
 volumes:
   django-data: {}

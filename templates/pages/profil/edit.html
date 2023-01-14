@@ -1,0 +1,27 @@
+{% extends '../../_base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Editer votre profil{% endblock %}
+{% block header %}
+<a href="{% url 'index' %}" class="btn btn-primary">Retour</a>
+{% endblock %}
+{% block content %}
+<h2>Editer votre profil</h2>
+{% if messages %}
+<div class="messages m-3">
+    {% for message in messages %}
+    <div
+        class="alert  {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}: alert-danger {% else %} alert-success {%  endif %} ">
+        <div {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <br />
+    <button class="btn btn-success" type="submit">Sauvegarder</button>
+</form>
+{% endblock content %}
