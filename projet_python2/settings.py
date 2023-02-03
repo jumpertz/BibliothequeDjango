@@ -131,7 +131,7 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-LOGIN_REDIRECT_URL = '/library/'
+LOGIN_REDIRECT_URL = '/'
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#static-root
 STATIC_ROOT = str(BASE_DIR.joinpath('staticfiles'))
@@ -142,4 +142,4 @@ STATICFILES_DIRS = [str(BASE_DIR.joinpath('static'))]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-LOGOUT_REDIRECT_URL = '/library/accounts/login'
+LOGOUT_REDIRECT_URL = '/'
