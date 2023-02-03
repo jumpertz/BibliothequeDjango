@@ -80,8 +80,8 @@ class Migration(migrations.Migration):
                 ('password', models.CharField(max_length=100)),
                 ('phone', models.CharField(max_length=13)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('groups', models.ManyToManyField(related_name='user_groups', to='auth.group')),
-                ('user_permissions', models.ManyToManyField(related_name='user_permissions', to='auth.permission')),
+                ('groups', models.ManyToManyField(related_name='user_groups', to='registration.group')),
+                ('user_permissions', models.ManyToManyField(related_name='user_permissions', to='registration.permission')),
             ],
             options={
                 'db_table': 'users',
