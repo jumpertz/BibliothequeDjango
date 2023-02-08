@@ -1,0 +1,18 @@
+[
+  {
+    "model": "auth.User",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$36000$4U6xKj6LfU6b$R6+jbyPjZUvhONd1G18X1j+5xHah5vAo5W5JL/NUOjE=",
+      "last_login": "2009-08-24 11:52:36",
+      "is_superuser": false,
+      "username": "james48",
+      "first_name": "Eric",
+      "last_name": "Williams",
+      "email": "efowler@example.net",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2008-03-12 02:15:14"
+    }
+  }
+]
