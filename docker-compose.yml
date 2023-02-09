@@ -21,6 +21,15 @@ services:
       - '8000:8000'
     depends_on:
       - db
-
+  adminer:
+    image: adminer
+    links:
+      - db
+    restart: always
+    ports:
+      - '8080:8080'
+    depends_on:
+      - db
+     
 volumes:
   django-data: {}

@@ -56,6 +56,15 @@
     {% block header %}
     {% endblock %}
   </div>
+
+  <div>
+    <nav>
+      {% comment %} <a href="{% url 'new' %}">Home</a> {% endcomment %}
+      {% comment %} <a href="{% url 'books/index' %}">Books</a> {% endcomment %}
+      {% comment %} <a href="{% url 'search' %}">Search</a> {% endcomment %}
+
+    </nav>
+
   <div class="container">
     {% block content %}
     <p>Default content...</p>
