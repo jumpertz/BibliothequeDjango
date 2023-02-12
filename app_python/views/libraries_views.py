@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from ..models import Library, BookLibrary
+from ..models import Library, BookLibrary, Bookseller
 from ..forms.book_form import BookForm
 from django.views import generic
 from django.contrib import messages
@@ -45,6 +45,10 @@ class Libraries(generic.TemplateView):
             library = Library(name=name, address=address, city=city,
                         zipcode=zipcode, country=country, owner_id=owner_id)
             library.save()
+
+            bookseller = Bookseller(library=library, user=self.user)
+            bookseller.save()
+
         return render(self, 'pages/libraries/new.html')
 
     @login_required

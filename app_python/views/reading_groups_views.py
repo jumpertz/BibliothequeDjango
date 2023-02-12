@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from ..models import GroupUsers, GroupUser
+from ..models import GroupUsers, GroupUser, Bookseller
 from django.views import generic
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
@@ -34,8 +34,9 @@ class ReadingGroups(generic.TemplateView):
     @login_required
     def add(self):
         if self.method == "POST":
+
+            organizer = Bookseller.objects.get(user=self.user)
             title = self.POST['title']
-            organizer = self.user
             description = self.POST['description']
             start = self.POST['start']
             end = self.POST['end']
@@ -50,9 +51,15 @@ class ReadingGroups(generic.TemplateView):
 
     @login_required
     def join(self, id):
-        group_user = get_object_or_404(GroupUsers, pk=id)
-        user = self.user
-        group_user.user.add(user)
+        group_user = GroupUser(group=get_object_or_404(GroupUsers, pk=id), user=self.user)
+        group_user.save()
+
+        return redirect('index_group_users')
+
+
+    @login_required
+    def leave(self, id):
+        GroupUser.objects.filter(group=get_object_or_404(GroupUsers, pk=id), user=self.user).delete()
         return redirect('index_group_users')
 
 

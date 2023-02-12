@@ -54,6 +54,8 @@ urlpatterns = [
     path('reading-groups/new', reading_groups_views.ReadingGroups.add, name='new_reading_group'),
     path('reading-groups/search', reading_groups_views.ReadingGroups.search, name='search_reading_groups'),
     path('reading-groups/delete/<int:id>/', reading_groups_views.ReadingGroups.delete, name='delete_reading_group'),
+    path('reading-groups/leave/<int:id>/', reading_groups_views.ReadingGroups.leave, name='leave_reading_group'),
+    path('reading-groups/join/<int:id>/', reading_groups_views.ReadingGroups.join, name='join_reading_group'),
 ]
 
 if settings.DEBUG:
