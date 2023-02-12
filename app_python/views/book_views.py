@@ -46,7 +46,6 @@ class Books(generic.TemplateView):
 
             book = Book(title=title, author=author, thumbnail=thumbnail,
                         description=description, collection=collection)
-            bo
             book.save()
 
             return redirect('index_books')

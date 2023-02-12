@@ -1,0 +1,12 @@
+{% extends "_base.html" %} {% block title %}Topic Detail{% endblock %} {% block
+content %}
+<div class="card">
+  <div class="card-body">
+    <h1 class="card-title">{{ topic.title }}</h1>
+    <p>Auteur: {{ topic.owner }}</p>
+    <p class="card-text">{{ topic.description }}</p>
+    <p class="card-text">Publié le {{ topic.created_at }}</p>
+  </div>
+</div>
+<a href="{% url 'index_books' %}" class="btn btn-primary m-3">Retour</a>
+{% endblock %}

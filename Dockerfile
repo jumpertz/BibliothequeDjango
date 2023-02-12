@@ -12,7 +12,7 @@ WORKDIR /code
 COPY requirements.txt /code/
 RUN pip install -r requirements.txt
 RUN pip install Pillow
-RUN pip install psycopg2-binary
+RUN pip install psycopg2==2.9.3
 
 COPY . /code/
 

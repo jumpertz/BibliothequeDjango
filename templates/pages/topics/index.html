@@ -1,0 +1,53 @@
+{% extends "_base.html" %}
+
+{% block title %}Topics{% endblock %}
+
+{% block content %}
+    <h1>Topics</h1>
+    <table class="table table-hover">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Titre</th>
+            <th scope="col">Description</th>
+            <th scope="col">Créé par</th>
+            <th scope="col">Créé le</th>
+
+            <th scope="col"></th>
+            {% if user.is_authenticated %}
+                {% if user.is_staff %}
+                    <th scope="col"></th>
+                {% endif %}
+            {% endif %}
+        </tr>
+        </thead>
+
+        {{ app.user.id }}
+
+        {% for topic in topics %}
+            <tr>
+                    <td>{{ topic.title }}</td>
+                    <td>{{ topic.description }}</td>
+                    <td>{{ topic.owner }}</td>
+                    <td>{{ topic.created_at }}</td>
+   
+                <td>
+                    <a href="{% url 'details_topic' topic.id %}" class="btn btn-outline-primary">Voir</a>
+                </td>
+                {% if user.is_authenticated %}
+                    {% if user.is_staff %}
+                        <td>
+                            <a href="{% url 'delete_topic' topic.id %}" class="btn btn-danger">Supprimer</a>
+                        </td>
+                    {% endif %}
+                {% endif %}
+                </th>
+            </tr>
+        {% endfor %}
+    </table>
+    {% if user.is_authenticated %}
+        {% if user.is_staff %}
+            <a href="/topics/new" class="btn btn-outline-primary">Add a new topic</a>
+        {% endif %}
+    {% endif %}
+{% endblock %}
