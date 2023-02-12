@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import user_passes_test
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
@@ -9,6 +9,8 @@ from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.views import LogoutView
+
+from ..models import Book
 
 
 
@@ -34,3 +36,34 @@ class SignInView(LoginView):
         if user is not None:
             login(self.request, user)
         return super().form_valid(form)
+
+
+class Books(generic.TemplateView):
+
+    def book_list(request):
+        books = Book.objects.all()
+        return render(request, 'books/index.html', {'books': books})
+
+    def add(request):
+        if request.method == "POST":
+            title = request.POST['title']
+            author = request.POST['author']
+            thumbnail = request.FILES['thumbnail']
+            description = request.POST['description']
+            collection = request.POST['collection']
+
+            book = Book(title=title, author=author, thumbnail=thumbnail,
+                        description=description, collection=collection)
+            book.save()
+
+            return redirect('index_books')
+
+        return render(request, 'books/new.html')
+
+    def search(request):
+        if request.method == "POST":
+            query = request.POST['search']
+            books = Book.objects.filter(title__icontains=query)
+            return render(request, 'books/search.html', {'books': books})
+        books = Book.objects.all()
+        return render(request, 'books/search.html', {'books': books})
