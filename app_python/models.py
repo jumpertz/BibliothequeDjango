@@ -126,6 +126,7 @@ class GroupUsers(models.Model):
 
 
 class GroupUser(models.Model):
+
     group = models.ForeignKey(GroupUsers, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)

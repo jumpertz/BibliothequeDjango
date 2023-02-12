@@ -30,8 +30,10 @@ urlpatterns = [
     # BOOKS
     path('books/', book_views.Books.book_list, name='index_books'),
     path('books/<int:id>/', book_views.Books.details, name='details_book'),
+
     path('books/new/', book_views.Books.add, name='new_book'),
     path('books/new/<int:library_id>', book_views.Books.add_by_library, name='new_book_library'),
+
     path('books/search', book_views.Books.search, name='search_books'),
     path('books/delete/<int:id>/', book_views.Books.delete, name='delete_book'),
 
@@ -40,6 +42,7 @@ urlpatterns = [
     path('libraries/<int:id>/', libraries_views.Libraries.details, name='details_library'),
     path('libraries/new', libraries_views.Libraries.add, name='new_library'),
     path('libraries/delete/<int:id>/', libraries_views.Libraries.delete, name='delete_library'),
+
 
     # TOPICS
     path('topics/', topic_views.Topics.topic_list, name='index_topics'),
@@ -56,6 +59,7 @@ urlpatterns = [
     path('reading-groups/delete/<int:id>/', reading_groups_views.ReadingGroups.delete, name='delete_reading_group'),
     path('reading-groups/leave/<int:id>/', reading_groups_views.ReadingGroups.leave, name='leave_reading_group'),
     path('reading-groups/join/<int:id>/', reading_groups_views.ReadingGroups.join, name='join_reading_group'),
+
 ]
 
 if settings.DEBUG:
