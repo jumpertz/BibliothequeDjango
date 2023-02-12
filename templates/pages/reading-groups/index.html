@@ -1,0 +1,43 @@
+{% extends "_base.html" %}
+
+{% block title %}Libraires{% endblock %}
+
+{% block content %}
+<h1>Groupe de lecture</h1>
+
+<table class="table table-hover">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">Titre</th>
+            <th scope="col">Organisateur</th>
+            <th scope="col">Description</th>
+            <th scope="col">Début</th>
+            <th scope="col">Fin</th>
+            {% if user.is_authenticated and user.is_staff %}
+            <th scope="col"></th>
+            {% endif %}
+        </tr>
+    </thead>
+
+    {% for reading_group in reading_groups %}
+    <tr>
+        <td>{{ reading_group.title }}</td>
+        <td>{{ reading_group.organizer.username }}</td>
+        <td>{{ reading_group.description }}</td>
+        <td>{{ reading_group.start }}</td>
+        <td>{{ reading_group.end }}</td>
+        <td>
+            <a href="{% url 'details_reading_group' reading_group.id %}" class="btn btn-outline-primary">Détails</a>
+        </td>
+        {% if user.is_authenticated and user.is_staff %}
+        <td>
+            <a href="{% url 'delete_reading_group' reading_group.id %}" class="btn btn-danger">Supprimer</a>
+        </td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+</table>
+{% if user.is_authenticated and user.is_staff %}
+<a href="/reading-groups/new" class="btn btn-primary">Ajouter un groupe de lecture</a>
+{% endif %}
+{% endblock %}

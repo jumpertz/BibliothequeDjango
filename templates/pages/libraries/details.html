@@ -13,8 +13,7 @@
     <h2>Nos livres</h2>
     {% for book in books %}
     <div class="card-body border">
-        <p>{{ book.book }}</p>
-        <p>Par: {{ book.user.username }}</p>
+        <p>{{ book.book.title }}</p>
     </div>
     {% empty %}
     <div class="card-body border">
@@ -23,7 +22,7 @@
     {% endfor %}
 
     {% if user.is_authenticated and user.is_staff %}
-    <a href="{% url 'new_book' library.id %}" class="btn btn-outline-primary">Ajouter un livre</a>
+    <a href="{% url 'new_book_library' library.id %}" class="btn btn-outline-primary">Ajouter un livre</a>
     {% endif %}
 
 </div>

@@ -1,0 +1,38 @@
+{% extends "_base.html" %}
+
+{% block title %}Library Detail{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <h1 class="card-title">{{ reading_group.title }}</h1>
+        <p>Organisateur: {{ reading_group.organizer.username }}</p>
+        <p>Description: {{ reading_group.description }}</p>
+        <p>Début: {{ reading_group.start }}</p>
+        <p>Fin: {{ reading_group.end }}</p>
+    </div>
+    <!-- Liste des commentaires du topic -->
+    <h2>Participants</h2>
+    {% for group_user in participants %}
+    <div class="card-body border">
+        <p>{{ group_user.user.username }}</p>
+    </div>
+    {% empty %}
+    <div class="card-body border">
+        <p>Aucun participant</p>
+    </div>
+    {% endfor %}
+
+    {% if user.is_authenticated %}
+    {% if user in participants %}
+    <a href="{% url 'leave_reading_group' reading_group.id %}" class="btn btn-outline-primary">Quitter le groupe de
+        lecture</a>
+    {% else %}
+    <a href="{% url 'join_reading_group' reading_group.id %}" class="btn btn-outline-primary">Rejoindre le groupe de
+        lecture</a>
+    {% endif %}
+    {% endif %}
+
+</div>
+<a href="{% url 'index_reading_groups' %}" class="btn btn-primary m-3">Retour</a>
+{% endblock %}
