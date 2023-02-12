@@ -1,0 +1,40 @@
+{% extends "_base.html" %}
+
+{% block title %}Books{% endblock %}
+
+{% block content %}
+    <h1>Books</h1>
+    <table class="table table-hover">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Couverture</th>
+            <th scope="col">Titre</th>
+            <th scope="col">Auteur</th>
+            <th scope="col">Collection</th>
+            <th scope="col">Description</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+
+        {% for book in books %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                {% if book.thumbnail %}
+                    <td>
+                        <image src="{{ book.thumbnail.url }}" height="80px" alt="{{ book.title }}"/>
+                    </td>
+                {% endif %}
+                <td>{{ book.title }}</td>
+                <td>{{ book.author }}</td>
+                <td>{{ book.collection }}</td>
+                <td>{{ book.description }}</td>
+                <td><a href="{% url 'delete_book' book.id %}" class="btn btn-danger">Supprimer</a></td>
+                </th>
+            </tr>
+        {% endfor %}
+    </table>
+    {% if user.is_authenticated %}
+        <a href="/books/new" class="btn btn-outline-primary">Add a new book</a>
+    {% endif %}
+{% endblock %}
