@@ -30,13 +30,17 @@ urlpatterns = [
     # BOOKS
     path('books/', book_views.Books.book_list, name='index_books'),
     path('books/<int:id>/', book_views.Books.details, name='details_book'),
-    path('books/new', book_views.Books.add, name='new_book'),
+    # books/new can have a Library id as parameter
+    path('books/new/', book_views.Books.add, name='new_book'),
+    path('books/new/<int:library_id>', book_views.Books.add_by_library, name='new_book_library'),
     path('books/search', book_views.Books.search, name='search_books'),
     path('books/delete/<int:id>/', book_views.Books.delete, name='delete_book'),
 
     # LIBRARY
     path('libraries/', libraries_views.Libraries.libraries_list, name='library_list'),
+    path('libraries/<int:id>/', libraries_views.Libraries.details, name='details_library'),
     path('libraries/new', libraries_views.Libraries.add, name='new_library'),
+    path('libraries/delete/<int:id>/', libraries_views.Libraries.delete, name='delete_library'),
 
     # TOPICS
     path('topics/', topic_views.Topics.topic_list, name='index_topics'),

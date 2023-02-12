@@ -3,59 +3,42 @@
 {% block title %}Libraires{% endblock %}
 
 {% block content %}
-    <h1>Libraires</h1>
+<h1>Librairies</h1>
 
+<table class="table table-hover">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Adresse</th>
+            <th scope="col">Ville</th>
+            <th scope="col">Code postal</th>
+            <th scope="col">Pays</th>
+            <th scope="col"></th>
+            {% if user.is_authenticated and user.is_staff %}
+            <th scope="col"></th>
+            {% endif %}
+        </tr>
+    </thead>
 
-        {% for library in libraries %}
-            <tr>
-                <td>{{ forloop.counter }}</td>
-                {% if book.thumbnail %}
-                    <td>
-                        <image src="{{ book.thumbnail.url }}" height="80px" alt="{{ book.title }}"/>
-                    </td>
-                {% else %}
-                    <td>
-                        <image src="../../media/images/pas-d-image-disponible.jpg" height="80px"
-                               alt="{{ book.title }}"/>
-                    </td>
-                {% endif %}
-                {% if book.title %}
-                    <td>{{ book.title }}</td>
-                {% else %}
-                    <td></td>
-                {% endif %}
-                {% if book.author %}
-                    <td>{{ book.author }}</td>
-                {% else %}
-                    <td></td>
-                {% endif %}
-                {% if book.collection %}
-                    <td>{{ book.collection }}</td>
-                {% else %}
-                    <td></td>
-                {% endif %}
-                {% if book.collection %}
-                    <td>{{ book.description|default:'' }}</td>
-                {% else %}
-                    <td></td>
-                {% endif %}
-                <td>
-                    <a href="{% url 'details_book' book.id %}" class="btn btn-outline-primary">Détails</a>
-                </td>
-                {% if user.is_authenticated %}
-                    {% if user.is_staff %}
-                        <td>
-                            <a href="{% url 'delete_book' book.id %}" class="btn btn-danger">Supprimer</a>
-                        </td>
-                    {% endif %}
-                {% endif %}
-                </th>
-            </tr>
-        {% endfor %}
-    </table>
-    {% if user.is_authenticated %}
-        {% if user.is_staff %}
-            <a href="/libraries/new" class="btn btn-primary">Ajouter une Librairie</a>
+    {% for library in libraries %}
+    <tr>
+        <td>{{ library.name }}</td>
+        <td>{{ library.address }}</td>
+        <td>{{ library.city }}</td>
+        <td>{{ library.zipcode }}</td>
+        <td>{{ library.country }}</td>
+        <td>
+            <a href="{% url 'details_library' library.id %}" class="btn btn-outline-primary">Détails</a>
+        </td>
+        {% if user.is_authenticated and user.is_staff %}
+        <td>
+            <a href="{% url 'delete_library' library.id %}" class="btn btn-danger">Supprimer</a>
+        </td>
         {% endif %}
-    {% endif %}
+    </tr>
+    {% endfor %}
+</table>
+{% if user.is_authenticated and user.is_staff %}
+<a href="/libraries/new" class="btn btn-primary">Ajouter une librairie</a>
+{% endif %}
 {% endblock %}
