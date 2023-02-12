@@ -1,0 +1,27 @@
+{% extends "_base.html" %}
+
+{% block title %}Books{% endblock %}
+
+{% block content %}
+    <h1>Ajouter un livre</h1>
+
+    <form method="post" enctype="multipart/form-data" class="form-group">
+    {% csrf_token %}
+    <label for="title">Titre</label>
+    <input type="text" id="title" name="title">
+
+    <label for="author">Auteur</label>
+    <input type="text" id="author" name="author">
+
+    <label for="thumbnail">Image</label>
+    <input type="file" id="thumbnail" name="thumbnail">
+
+    <label for="description">Description</label>
+    <textarea id="description" name="description"></textarea>
+
+    <label for="collection">Collection</label>
+    <input type="text" id="collection" name="collection">
+
+    <button type="submit">Ajouter</button>
+    </form>
+{% endblock %}

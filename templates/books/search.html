@@ -1,0 +1,36 @@
+{% extends "_base.html" %}
+
+{% block title %}Search Books{% endblock %}
+
+{% block content %}
+    <h1>Search Books</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <label for="search">Search</label>
+        <input type="text" name="search" placeholder="Search" />
+        <input type="submit" value="Search" />
+    </form>
+
+    <h2>Results</h2>
+    <p>Found {{ books|length }} books</p>
+
+    <table>
+        <tr>
+            <th></th>
+            <th>Titre</th>
+            <th>Auteur</th>
+            <th>Collection</th>
+            <th>Description</th>
+        </tr>
+        {% for book in books %}
+            <tr>
+                <td><image src="{{ book.thumbnail.url }}" height="80px" alt="{{ book.title }}"/></td>
+                <td>{{ book.title }}</td>
+                <td>{{ book.author }}</td>
+                <td>{{ book.collection }}</td>
+                <td>{{ book.description }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
