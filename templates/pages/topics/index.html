@@ -1,0 +1,39 @@
+{% extends "_base.html" %}
+
+{% block title %}Topics{% endblock %}
+
+{% block content %}
+<h1>Topics</h1>
+<table class="table table-hover">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">Titre</th>
+            <th scope="col">Auteur</th>
+            <th scope="col">Description</th>
+            <th scope="col"></th>
+            {% if user.is_authenticated and user.is_staff %}
+            <th scope="col"></th>
+            {% endif %}
+        </tr>
+    </thead>
+
+    {% for topic in topics %}
+    <tr>
+        <td>{{ topic.title }}</td>
+        <td>{{ topic.owner.username }}</td>
+        <td>{{ topic.description }}</td>
+        <td>
+            <a href="{% url 'details_topic' topic.id %}" class="btn btn-outline-primary">Voir</a>
+        </td>
+        {% if user.is_authenticated and user.is_staff %}
+        <td>
+            <a href="{% url 'delete_topic' topic.id %}" class="btn btn-danger">Supprimer</a>
+        </td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+</table>
+{% if user.is_authenticated and user.is_staff %}
+<a href="/topics/new" class="btn btn-outline-primary">Add a new topic</a>
+{% endif %}
+{% endblock %}

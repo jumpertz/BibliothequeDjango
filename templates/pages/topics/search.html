@@ -1,0 +1,32 @@
+{% extends "_base.html" %}
+
+{% block title %}Search Topics{% endblock %}
+
+{% block content %}
+<h1>Search Topics</h1>
+
+<form method="post">
+    {% csrf_token %}
+    <label for="search">Search</label>
+    <input type="text" name="search" placeholder="Search" />
+    <input type="submit" value="Search" />
+</form>
+
+<h2>Results</h2>
+<p>Found {{ topics|length }} topics</p>
+
+<table>
+    <tr>
+        <th>Titre</th>
+        <th>Auteur</th>
+        <th>Description</th>
+    </tr>
+    {% for topic in topics %}
+    <tr>
+        <td>{{ topic.title }}</td>
+        <td>{{ topic.owner.username }}</td>
+        <td>{{ topic.description }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
