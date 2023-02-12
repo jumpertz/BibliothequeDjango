@@ -4,24 +4,41 @@
 
 {% block content %}
     <h1>Ajouter un livre</h1>
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="card p-3">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="title">Titre</label>
+                        <input type="text" id="title" name="title" class="form-control">
+                    </div>
 
-    <form method="post" enctype="multipart/form-data" class="form-group">
-    {% csrf_token %}
-    <label for="title">Titre</label>
-    <input type="text" id="title" name="title">
+                    <div class="form-group">
+                        <label for="author">Auteur</label>
+                        <input type="text" id="author" name="author" class="form-control">
+                    </div>
 
-    <label for="author">Auteur</label>
-    <input type="text" id="author" name="author">
+                    <div class="form-group">
+                        <label for="thumbnail">Image</label>
+                        <input type="file" id="thumbnail" name="thumbnail" class="btn btn-outline-secondary">
+                    </div>
 
-    <label for="thumbnail">Image</label>
-    <input type="file" id="thumbnail" name="thumbnail">
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea id="description" name="description" class="form-control"></textarea>
+                    </div>
 
-    <label for="description">Description</label>
-    <textarea id="description" name="description"></textarea>
+                    <div class="from-group">
+                        <label for="collection">Collection</label>
+                        <input type="text" id="collection" name="collection" class="form-control">
+                    </div>
 
-    <label for="collection">Collection</label>
-    <input type="text" id="collection" name="collection">
 
-    <button type="submit">Ajouter</button>
-    </form>
+                    <button type="submit" class="btn btn-primary mt-3">Ajouter</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
 {% endblock %}
