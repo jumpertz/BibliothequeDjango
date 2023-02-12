@@ -62,6 +62,8 @@ class Books(generic.TemplateView):
             collection = self.POST['collection']
 
             book_library = BookLibrary.objects.get(pk=library_id)
+            ## get the number of books in the library
+            nb_books = book_library.book.count()
             book_library.book.add(Book.objects.get(pk=book_library.book.id))
 
             book = Book(title=title, author=author, thumbnail=thumbnail,
