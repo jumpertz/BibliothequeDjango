@@ -30,3 +30,6 @@ migrations:
 
 migrate:
 	docker exec -ti "bibliothequedjango-web-1" python manage.py migrate app_python
+
+generate-superuser:
+	docker exec -ti "bibliothequedjango-web-1" python manage.py createsuperuser
