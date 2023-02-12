@@ -1,162 +1,62 @@
 [
-  {
-    "model": "auth.User",
-    "pk": 1,
-    "fields": {
-      "password": "pbkdf2_sha256$36000$4U6xKj6LfU6b$R6+jbyPjZUvhONd1G18X1j+5xHah5vAo5W5JL/NUOjE=",
-      "last_login": "2018-01-12 01:44:22",
-      "is_superuser": false,
-      "username": "daviskim",
-      "first_name": "Lisa",
-      "last_name": "Green",
-      "email": "atkinsonbailey@example.org",
-      "is_staff": false,
-      "is_active": true,
-      "date_joined": "1996-11-22 05:55:09"
+    {
+        "username": "harrisonmichelle",
+        "first_name": "Kristy",
+        "last_name": "Eaton",
+        "email": "christopher47@example.org"
+    },
+    {
+        "username": "michael15",
+        "first_name": "Kenneth",
+        "last_name": "Medina",
+        "email": "hali@example.com"
+    },
+    {
+        "username": "koneill",
+        "first_name": "Stephanie",
+        "last_name": "Cochran",
+        "email": "charles84@example.com"
+    },
+    {
+        "username": "pholmes",
+        "first_name": "Tina",
+        "last_name": "Koch",
+        "email": "barbarayork@example.com"
+    },
+    {
+        "username": "carolrose",
+        "first_name": "George",
+        "last_name": "Snyder",
+        "email": "qgreen@example.com"
+    },
+    {
+        "username": "mfriedman",
+        "first_name": "Christian",
+        "last_name": "Harris",
+        "email": "fullernicholas@example.org"
+    },
+    {
+        "username": "myersbenjamin",
+        "first_name": "Sheryl",
+        "last_name": "Mcdonald",
+        "email": "fbishop@example.net"
+    },
+    {
+        "username": "okrueger",
+        "first_name": "Megan",
+        "last_name": "Smith",
+        "email": "donald81@example.net"
+    },
+    {
+        "username": "florescrystal",
+        "first_name": "Lisa",
+        "last_name": "Webster",
+        "email": "smithaaron@example.com"
+    },
+    {
+        "username": "jonesdavid",
+        "first_name": "Philip",
+        "last_name": "Willis",
+        "email": "tranmelanie@example.org"
     }
-  },
-  {
-    "model": "auth.User",
-    "pk": 2,
-    "fields": {
-      "password": "pbkdf2_sha256$36000$4U6xKj6LfU6b$R6+jbyPjZUvhONd1G18X1j+5xHah5vAo5W5JL/NUOjE=",
-      "last_login": "1995-09-19 06:05:36",
-      "is_superuser": false,
-      "username": "chasedonna",
-      "first_name": "Tim",
-      "last_name": "Perry",
-      "email": "mkim@example.com",
-      "is_staff": false,
-      "is_active": true,
-      "date_joined": "2011-07-06 13:17:16"
-    }
-  },
-  {
-    "model": "auth.User",
-    "pk": 3,
-    "fields": {
-      "password": "pbkdf2_sha256$36000$4U6xKj6LfU6b$R6+jbyPjZUvhONd1G18X1j+5xHah5vAo5W5JL/NUOjE=",
-      "last_login": "1996-01-17 10:09:13",
-      "is_superuser": false,
-      "username": "swilliams",
-      "first_name": "Donna",
-      "last_name": "Sanchez",
-      "email": "melissalee@example.com",
-      "is_staff": false,
-      "is_active": true,
-      "date_joined": "2023-01-31 23:44:35"
-    }
-  },
-  {
-    "model": "auth.User",
-    "pk": 4,
-    "fields": {
-      "password": "pbkdf2_sha256$36000$4U6xKj6LfU6b$R6+jbyPjZUvhONd1G18X1j+5xHah5vAo5W5JL/NUOjE=",
-      "last_login": "2020-07-21 07:26:14",
-      "is_superuser": false,
-      "username": "stacy62",
-      "first_name": "Gwendolyn",
-      "last_name": "Rodriguez",
-      "email": "melissa20@example.org",
-      "is_staff": false,
-      "is_active": true,
-      "date_joined": "2022-11-07 03:19:49"
-    }
-  },
-  {
-    "model": "auth.User",
-    "pk": 5,
-    "fields": {
-      "password": "pbkdf2_sha256$36000$4U6xKj6LfU6b$R6+jbyPjZUvhONd1G18X1j+5xHah5vAo5W5JL/NUOjE=",
-      "last_login": "2016-03-18 09:25:36",
-      "is_superuser": false,
-      "username": "darrell23",
-      "first_name": "Jeremy",
-      "last_name": "Bright",
-      "email": "jamesmorton@example.com",
-      "is_staff": false,
-      "is_active": true,
-      "date_joined": "2018-10-17 19:28:56"
-    }
-  },
-  {
-    "model": "auth.User",
-    "pk": 6,
-    "fields": {
-      "password": "pbkdf2_sha256$36000$4U6xKj6LfU6b$R6+jbyPjZUvhONd1G18X1j+5xHah5vAo5W5JL/NUOjE=",
-      "last_login": "2016-08-31 13:15:48",
-      "is_superuser": false,
-      "username": "michelle04",
-      "first_name": "Mark",
-      "last_name": "Mccullough",
-      "email": "jhansen@example.net",
-      "is_staff": false,
-      "is_active": true,
-      "date_joined": "1995-03-15 12:59:24"
-    }
-  },
-  {
-    "model": "auth.User",
-    "pk": 7,
-    "fields": {
-      "password": "pbkdf2_sha256$36000$4U6xKj6LfU6b$R6+jbyPjZUvhONd1G18X1j+5xHah5vAo5W5JL/NUOjE=",
-      "last_login": "1999-11-11 08:26:43",
-      "is_superuser": false,
-      "username": "sanchezeric",
-      "first_name": "Ryan",
-      "last_name": "Johnson",
-      "email": "perezanthony@example.com",
-      "is_staff": false,
-      "is_active": true,
-      "date_joined": "2022-04-26 08:58:54"
-    }
-  },
-  {
-    "model": "auth.User",
-    "pk": 8,
-    "fields": {
-      "password": "pbkdf2_sha256$36000$4U6xKj6LfU6b$R6+jbyPjZUvhONd1G18X1j+5xHah5vAo5W5JL/NUOjE=",
-      "last_login": "1996-11-01 21:41:58",
-      "is_superuser": false,
-      "username": "adavenport",
-      "first_name": "Michelle",
-      "last_name": "Cobb",
-      "email": "jose66@example.net",
-      "is_staff": false,
-      "is_active": true,
-      "date_joined": "1994-09-29 08:50:12"
-    }
-  },
-  {
-    "model": "auth.User",
-    "pk": 9,
-    "fields": {
-      "password": "pbkdf2_sha256$36000$4U6xKj6LfU6b$R6+jbyPjZUvhONd1G18X1j+5xHah5vAo5W5JL/NUOjE=",
-      "last_login": "1998-11-28 08:08:27",
-      "is_superuser": false,
-      "username": "dawn27",
-      "first_name": "Kevin",
-      "last_name": "Cantrell",
-      "email": "kurtgriffin@example.org",
-      "is_staff": false,
-      "is_active": true,
-      "date_joined": "2019-06-16 09:14:13"
-    }
-  },
-  {
-    "model": "auth.User",
-    "pk": 10,
-    "fields": {
-      "password": "pbkdf2_sha256$36000$4U6xKj6LfU6b$R6+jbyPjZUvhONd1G18X1j+5xHah5vAo5W5JL/NUOjE=",
-      "last_login": "2001-03-31 03:18:27",
-      "is_superuser": false,
-      "username": "xjones",
-      "first_name": "Anthony",
-      "last_name": "Hughes",
-      "email": "scott59@example.com",
-      "is_staff": false,
-      "is_active": true,
-      "date_joined": "2004-12-09 12:33:12"
-    }
-  }
 ]

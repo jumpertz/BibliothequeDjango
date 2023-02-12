@@ -12,15 +12,18 @@ stop:
 
 #installer un module
 install:
-	pip install
+	docker exec -it "bibliothequedjango-web-1" pip install
 
 #lancer les fixtures
+generate-fixtures:
+	docker exec -it "bibliothequedjango-web-1" python "app_python/fixtures/generate_fixtures.py"
+
 load-fixtures:
-	python3 app_python/fixtures/generate_fixtures.py
+	docker exec -it "bibliothequedjango-web-1" python manage.py loaddata ./app_python/fixtures/*.json
 
 #dump les données de users
 dump-data-users:
-	python3 manage.py dumpdata auth.User --output=app_python/fixtures/users.json
+	docker exec -it "bibliothequedjango-web-1" python manage.py dumpdata auth.User --output=app_python/fixtures/users.json
 
 migrations:
 	docker exec -ti "bibliothequedjango-web-1" python manage.py makemigrations app_python
