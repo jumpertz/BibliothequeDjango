@@ -28,7 +28,7 @@ class ReadingGroups(generic.TemplateView):
 
     def details(self, id):
         group_user = get_object_or_404(GroupUsers, pk=id)
-        return render(self, 'pages/reading-groups/details.html', {'reading_group': group_user})
+        return render(self, 'pages/reading-groups/details.html', {'reading_group': group_user, 'participants': GroupUser.objects.filter(group=group_user)})
 
 
     @login_required
@@ -44,7 +44,7 @@ class ReadingGroups(generic.TemplateView):
             group_users = GroupUsers(title=title, organizer=organizer, description=description, start=start, end=end)
             group_users.save()
 
-            return redirect('index_group_users')
+            return redirect('index_reading_groups')
 
         return render(self, 'pages/reading-groups/new.html')
 
@@ -54,18 +54,18 @@ class ReadingGroups(generic.TemplateView):
         group_user = GroupUser(group=get_object_or_404(GroupUsers, pk=id), user=self.user)
         group_user.save()
 
-        return redirect('index_group_users')
+        return redirect('index_reading_groups')
 
 
     @login_required
     def leave(self, id):
         GroupUser.objects.filter(group=get_object_or_404(GroupUsers, pk=id), user=self.user).delete()
-        return redirect('index_group_users')
+        return redirect('index_reading_groups')
 
 
     @login_required
     def delete(self, id):
         GroupUsers.objects.filter(pk=id).delete()
         messages.success(self, "Le groupe de lecture a bien été supprimé.")
-        return redirect('index_group_users')
+        return redirect('index_reading_groups')
 
