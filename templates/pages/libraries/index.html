@@ -1,0 +1,61 @@
+{% extends "_base.html" %}
+
+{% block title %}Libraires{% endblock %}
+
+{% block content %}
+    <h1>Libraires</h1>
+
+
+        {% for library in libraries %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                {% if book.thumbnail %}
+                    <td>
+                        <image src="{{ book.thumbnail.url }}" height="80px" alt="{{ book.title }}"/>
+                    </td>
+                {% else %}
+                    <td>
+                        <image src="../../media/images/pas-d-image-disponible.jpg" height="80px"
+                               alt="{{ book.title }}"/>
+                    </td>
+                {% endif %}
+                {% if book.title %}
+                    <td>{{ book.title }}</td>
+                {% else %}
+                    <td></td>
+                {% endif %}
+                {% if book.author %}
+                    <td>{{ book.author }}</td>
+                {% else %}
+                    <td></td>
+                {% endif %}
+                {% if book.collection %}
+                    <td>{{ book.collection }}</td>
+                {% else %}
+                    <td></td>
+                {% endif %}
+                {% if book.collection %}
+                    <td>{{ book.description|default:'' }}</td>
+                {% else %}
+                    <td></td>
+                {% endif %}
+                <td>
+                    <a href="{% url 'details_book' book.id %}" class="btn btn-outline-primary">Détails</a>
+                </td>
+                {% if user.is_authenticated %}
+                    {% if user.is_staff %}
+                        <td>
+                            <a href="{% url 'delete_book' book.id %}" class="btn btn-danger">Supprimer</a>
+                        </td>
+                    {% endif %}
+                {% endif %}
+                </th>
+            </tr>
+        {% endfor %}
+    </table>
+    {% if user.is_authenticated %}
+        {% if user.is_staff %}
+            <a href="/books/new" class="btn btn-outline-primary">Add a new book</a>
+        {% endif %}
+    {% endif %}
+{% endblock %}

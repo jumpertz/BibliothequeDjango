@@ -1,17 +1,13 @@
 {% extends '_base.html' %}
 {% load poll_extra %}
 
-{% block title %}Voir les notes{% endblock title %}
 {% block header %}
 <a href="{% url 'index' %}" class="btn btn-primary">Retour</a>
  <a href="{% url 'upload_users' %}" class="btn btn-success">upload csv</a>
 {% endblock %}
 {% block content %}
 {% for message in messages %}
-<div
-    class="alert  {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}: alert-danger {% else %} alert-success {%  endif %} ">
-    <div {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </div>
-</div>
+
 {% endfor %}
 <table class="table">
     <thead class="thead-light">

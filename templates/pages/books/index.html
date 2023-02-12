@@ -1,0 +1,77 @@
+{% extends "_base.html" %}
+
+{% block title %}Books{% endblock %}
+
+{% block content %}
+    <h1>Books</h1>
+    <table class="table table-hover">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Couverture</th>
+            <th scope="col">Titre</th>
+            <th scope="col">Auteur</th>
+            <th scope="col">Collection</th>
+            <th scope="col">Description</th>
+            <th scope="col"></th>
+            {% if user.is_authenticated %}
+                {% if user.is_staff %}
+                    <th scope="col"></th>
+                {% endif %}
+            {% endif %}
+        </tr>
+        </thead>
+
+        {% for book in books %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                {% if book.thumbnail %}
+                    <td>
+                        <image src="{{ book.thumbnail.url }}" height="80px" alt="{{ book.title }}"/>
+                    </td>
+                {% else %}
+                    <td>
+                        <image src="../../media/images/pas-d-image-disponible.jpg" height="80px"
+                               alt="{{ book.title }}"/>
+                    </td>
+                {% endif %}
+                {% if book.title %}
+                    <td>{{ book.title }}</td>
+                {% else %}
+                    <td></td>
+                {% endif %}
+                {% if book.author %}
+                    <td>{{ book.author }}</td>
+                {% else %}
+                    <td></td>
+                {% endif %}
+                {% if book.collection %}
+                    <td>{{ book.collection }}</td>
+                {% else %}
+                    <td></td>
+                {% endif %}
+                {% if book.collection %}
+                    <td>{{ book.description|default:'' }}</td>
+                {% else %}
+                    <td></td>
+                {% endif %}
+                <td>
+                    <a href="{% url 'details_book' book.id %}" class="btn btn-outline-primary">Détails</a>
+                </td>
+                {% if user.is_authenticated %}
+                    {% if user.is_staff %}
+                        <td>
+                            <a href="{% url 'delete_book' book.id %}" class="btn btn-danger">Supprimer</a>
+                        </td>
+                    {% endif %}
+                {% endif %}
+                </th>
+            </tr>
+        {% endfor %}
+    </table>
+    {% if user.is_authenticated %}
+        {% if user.is_staff %}
+            <a href="/books/new" class="btn btn-outline-primary">Add a new book</a>
+        {% endif %}
+    {% endif %}
+{% endblock %}

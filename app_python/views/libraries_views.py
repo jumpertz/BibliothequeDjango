@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from ..models import Book
+from ..models import Library
 from ..forms.book_form import BookForm
 from django.views import generic
 from django.contrib import messages
@@ -7,7 +7,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required, permission_required
 
 
-class Books(generic.TemplateView):
+class Libraries(generic.TemplateView):
 
     def __init__(self, **kwargs):
         super().__init__(kwargs)
@@ -15,9 +15,9 @@ class Books(generic.TemplateView):
         self.method = None
         self.POST = None
 
-    def book_list(request):
-        books = Book.objects.all()
-        return render(request, 'pages/books/index.html', {'books': books})
+    def libraries_list(self):
+        libraries = Library.objects.all()
+        return render(self, 'pages/libraries/index.html', {'libraries': libraries})
 
     def search(request):
         if request.method == "POST":
