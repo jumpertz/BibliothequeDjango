@@ -20,6 +20,7 @@ try:
 except ImportError:
     pass
 
+os.environ['DJANGO_SETTINGS_MODULE'] = 'projet_python2.settings'
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -46,7 +47,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app_python.apps.AppPythonConfig',
-    'helpers',
 ]
 
 MIDDLEWARE = [
@@ -137,7 +137,10 @@ LOGIN_REDIRECT_URL = '/'
 STATIC_ROOT = str(BASE_DIR.joinpath('staticfiles'))
 
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
-STATICFILES_DIRS = [str(BASE_DIR.joinpath('static'))]
+STATICFILES_DIRS = [
+    str(BASE_DIR.joinpath('static')),
+    str(BASE_DIR.joinpath('boot')),
+]
 
 
 MEDIA_URL = '/media/'

@@ -12,6 +12,7 @@ urlpatterns = [
     path('accounts/signin', index_views.SignInView.as_view(), name='signin'),
     path('accounts/edit', user_views.update_profile_view, name='user_update_profile'),
 
+    # USERS
     path('users', user_views.index, name='index_users'),
     path('users/create', user_views.create_view, name='create_users'),
     path('users/update/<int:user_id>', user_views.update_view, name='update_users'),

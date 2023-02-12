@@ -1,15 +1,16 @@
-import csv
-import io
-
-from django.contrib import messages
-from django.contrib.auth.models import User
-from django.http import HttpResponse
-from django.shortcuts import (get_object_or_404, render, redirect)
-
+from django.shortcuts import (get_object_or_404,
+                              render,
+                              redirect)
 from ..forms.profile_form import ProfilForm
 from ..forms.user_create_form import UserCreateForm
 from ..forms.user_update_form import UserUpdateForm
 from ..forms.user_upload_form import UploadFileForm
+from django.contrib import messages
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.models import User
+import csv, io
+from django.http import HttpResponse, HttpResponseRedirect
 
 
 def index(request):
