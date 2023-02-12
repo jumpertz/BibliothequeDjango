@@ -4,7 +4,7 @@ build:
 
 #run le projet
 run:
-	docker compose up -d
+	docker compose up
 
 #stop le projet
 stop:

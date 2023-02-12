@@ -36,6 +36,7 @@ urlpatterns = [
 
     # LIBRARY
     path('libraries/', libraries_views.Libraries.libraries_list, name='library_list'),
+    path('libraries/new', libraries_views.Libraries.add, name='new_library'),
 ]
 
 if settings.DEBUG:
