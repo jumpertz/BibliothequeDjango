@@ -1,0 +1,34 @@
+{% extends "_base.html" %}
+
+{% block title %}Topic Detail{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <h1 class="card-title">{{ topic.title }}</h1>
+        <p>Auteur: {{ topic.owner.username }}</p>
+        <p>Description: {{ topic.description }}</p>
+    </div>
+    <!-- Liste des commentaires du topic -->
+    {% for comment in comments %}
+    <div class="card-body border">
+        <p>{{ comment.comment }}</p>
+        <p>Par: {{ comment.user.username }}</p>
+    </div>
+    {% endfor %}
+    <!-- Formulaire d'ajout de commentaire -->
+    <div class="card">
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="comment">Commentaire</label>
+                    <textarea id="comment" name="comment" class="form-control"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">Ajouter</button>
+            </form>
+        </div>
+    </div>
+</div>
+<a href="{% url 'index_topics' %}" class="btn btn-primary m-3">Retour</a>
+{% endblock %}

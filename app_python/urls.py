@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.urls import path, include
 from django.contrib.auth.decorators import user_passes_test
 
-from .views import index_views, user_views, book_views, admin_views, libraries_views
+from .views import index_views, user_views, book_views, admin_views, libraries_views, topic_views
 
 
 def superuser_only(user):
@@ -37,6 +37,13 @@ urlpatterns = [
     # LIBRARY
     path('libraries/', libraries_views.Libraries.libraries_list, name='library_list'),
     path('libraries/new', libraries_views.Libraries.add, name='new_library'),
+
+    # TOPICS
+    path('topics/', topic_views.Topics.topic_list, name='index_topics'),
+    path('topics/<int:id>/', topic_views.Topics.details, name='details_topic'),
+    path('topics/new', topic_views.Topics.add, name='new_topic'),
+    path('topics/search', topic_views.Topics.search, name='search_topics'),
+    path('topics/delete/<int:id>/', topic_views.Topics.delete, name='delete_topic'),
 ]
 
 if settings.DEBUG:
