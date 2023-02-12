@@ -18,4 +18,10 @@ make migrations
 make migrate
 ```
 
-All the commands are in Makefile
+You can generate a superuser for the admin part
+
+```bash
+make generate-superuser
+```
+
+All the commands are in the Makefile
