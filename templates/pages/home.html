@@ -1,3 +1,6 @@
-{% extends '../_base.html' %}
-pages après la connexion (template/pages/home.html)
-
+{% extends '_base.html' %}
+{% block content %}
+    {% if user.is_superuser %}
+        redirect('admin-index')
+    {% endif %}
+{% endblock content %}

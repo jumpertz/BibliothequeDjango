@@ -1,15 +1,16 @@
-import csv
-import io
-
-from django.contrib import messages
-from django.contrib.auth.models import User
-from django.http import HttpResponse
-from django.shortcuts import (get_object_or_404, render, redirect)
-
+from django.shortcuts import (get_object_or_404,
+                              render,
+                              redirect)
 from ..forms.profile_form import ProfilForm
 from ..forms.user_create_form import UserCreateForm
 from ..forms.user_update_form import UserUpdateForm
 from ..forms.user_upload_form import UploadFileForm
+from django.contrib import messages
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.models import User
+import csv, io
+from django.http import HttpResponse, HttpResponseRedirect
 
 
 def index(request):
@@ -36,42 +37,6 @@ def update_profile_view(request):
     return render(request, 'pages/profil/edit.html', {
         'form': form,
     })
-
-
-def upload(request):
-    if request.method == 'POST':
-        print('file', request.FILES)
-        form = UploadFileForm(files=request.FILES)
-        print(form.is_valid())
-        if form.is_valid():
-            csv_file = request.FILES['file']
-            # handle_uploaded_file(request.FILES['file'])
-            data_set = csv_file.read().decode('UTF-8')
-            io_string = io.StringIO(data_set)
-            next(io_string)
-            for column in csv.reader(io_string, delimiter=';', quotechar="|"):
-                user = User.objects.create_user(
-                    {
-                        "username": column[0],
-                        "first_name": column[1],
-                        "last_name": column[2],
-                        "password": column[3],
-                        "groups": column[4],
-                    }
-                )
-                user.save()
-
-            return HttpResponse(data_set)
-    else:
-        form = UploadFileForm()
-    return render(request, 'pages/users/upload.html', {'form': form})
-
-
-def handle_uploaded_file(f):
-    print(f)
-    with open(f, 'wb+') as destination:
-        for chunk in f.chunks():
-            destination.write(chunk)
 
 
 def create_view(request):

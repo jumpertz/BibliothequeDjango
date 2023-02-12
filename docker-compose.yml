@@ -11,6 +11,9 @@ services:
       - POSTGRES_PASSWORD=password
     ports:
       - '5432:5432'
+    networks:
+      python-networks:
+
   web:
     build: .
     command: 'python manage.py runserver 0.0.0.0:8000'
@@ -21,6 +24,9 @@ services:
       - '8000:8000'
     depends_on:
       - db
+    networks:
+      python-networks:
+
   adminer:
     image: adminer
     links:
@@ -30,6 +36,8 @@ services:
       - '8080:8080'
     depends_on:
       - db
-     
+
 volumes:
   django-data: {}
+networks:
+  python-networks:
