@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from ..models import Book
+from ..models import Book, BookLibrary
 from ..forms.book_form import BookForm
 from django.views import generic
 from django.contrib import messages
@@ -46,7 +46,28 @@ class Books(generic.TemplateView):
 
             book = Book(title=title, author=author, thumbnail=thumbnail,
                         description=description, collection=collection)
-            bo
+            book.save()
+
+            return redirect('index_books')
+
+        return render(self, 'pages/books/new.html')
+
+    @login_required
+    def add_by_library(self, library_id):
+        if self.method == "POST":
+            title = self.POST['title']
+            author = self.POST['author']
+            thumbnail = self.FILES.get('thumbnail', None)
+            description = self.POST['description']
+            collection = self.POST['collection']
+
+            book_library = BookLibrary.objects.get(pk=library_id)
+            ## get the number of books in the library
+            nb_books = book_library.book.count()
+            book_library.book.add(Book.objects.get(pk=book_library.book.id))
+
+            book = Book(title=title, author=author, thumbnail=thumbnail,
+                        description=description, collection=collection)
             book.save()
 
             return redirect('index_books')

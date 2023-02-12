@@ -1,0 +1,30 @@
+{% extends "_base.html" %}
+
+{% block title %}Library Detail{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <h1 class="card-title">{{ library.name }}</h1>
+        <p>Auteur: {{ library.owner.username }}</p>
+        <p>Description: {{ library.description }}</p>
+    </div>
+    <!-- Liste des commentaires du topic -->
+    <h2>Nos livres</h2>
+    {% for book in books %}
+    <div class="card-body border">
+        <p>{{ book.book.title }}</p>
+    </div>
+    {% empty %}
+    <div class="card-body border">
+        <p>Aucun livre</p>
+    </div>
+    {% endfor %}
+
+    {% if user.is_authenticated and user.is_staff %}
+    <a href="{% url 'new_book_library' library.id %}" class="btn btn-outline-primary">Ajouter un livre</a>
+    {% endif %}
+
+</div>
+<a href="{% url 'index_topics' %}" class="btn btn-primary m-3">Retour</a>
+{% endblock %}

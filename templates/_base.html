@@ -20,77 +20,83 @@
 </head>
 
 <body>
-<main role="main">
-    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-        <h5 class="my-0 mr-md-auto font-weight-normal">
-            <a href="{% url 'index_books' %}">Librairie Django</a>
-        </h5>
-        <div class="container">
-            {% if user.is_authenticated %}
-                {% if user.is_staff %}
-                    <ul class="nav justify-content-center">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="{% url 'library_list' %}">Librairies</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                        </li>
-                    </ul>
-                {% endif %}
-            {% endif %}
-        </div>
 
-        <div class="justify-content-end">
-            <nav class="my-2 my-md-0 mr-md-3">
+    <main role="main">
+        <div
+            class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+            <h5 class="my-0 mr-md-auto font-weight-normal">
+                <a href="{% url 'index_books' %}">Librairie Django</a>
+            </h5>
+            <div class="container">
                 {% if user.is_authenticated %}
+                <ul class="nav justify-content-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'library_list' %}">Librairies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index_books' %}">Books</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index_topics' %}">Forum</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index_reading_groups' %}">Groupe de lecture</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li>
+                </ul>
+                {% endif %}
+            </div>
 
-                    Bienvenue <a href="#">{{ user }}{{ user.name }}</a>
+            <div class="justify-content-end">
+                <nav class="my-2 my-md-0 mr-md-3">
+                    {% if user.is_authenticated %}
+
+                    Bienvenue, <a href="#">{{ user }}{{ user.name }}</a>
                     <a class="btn btn-primary justify-content-right ml-3" href="{% url 'logout' %}">Deconnexion</a>
                     <!--<a class="btn btn-primary" href="{% url 'password_change' %}">Change password</a>-->
 
-                {% else %}
+                    {% else %}
+
                     <form class="form-inline ml-auto">
                         <a href="{% url 'login' %}" class="btn btn-outline-secondary">Log in</a>
                         <a href="{% url 'signup' %}" class="btn btn-primary ml-2">Sign up</a>
                     </form>
-                {% endif %}
-            </nav>
-        </div>
 
+                    {% endif %}
+                </nav>
+            </div>
+
+        </div>
+    </main>
+
+    <div class="col-12">
+        {% block header %}
+        {% endblock %}
     </div>
-</main>
-
-<div class="col-12">
-    {% block header %}
-    {% endblock %}
-</div>
-<div class="container">
-    {% block content %}
+    <div class="container">
+        {% block content %}
         <p>some content...</p>
-    {% endblock content %}
-</div>
+        {% endblock content %}
+    </div>
 
 
-{% block javascript %}
+    {% block javascript %}
     <script src="{% static 'js/base.js' %}"></script>
-{% endblock javascript %}
+    {% endblock javascript %}
 
-<footer class="footer">
-    <footer class="text-center text-lg-start">
-        <!-- Copyright -->
-        <div class="text-center p-3">
-            © 2023 Copyright:
-            <a class="text-dark" href="https://mdbootstrap.com/">MyGES - Librairy Django</a>
-        </div>
-        <!-- Copyright -->
+    <footer class="footer">
+        <footer class="text-center text-lg-start">
+            <!-- Copyright -->
+            <div class="text-center p-3">
+                © 2023 Copyright:
+                <a class="text-dark" href="https://mdbootstrap.com/">MyGES - Librairy Django</a>
+            </div>
+            <!-- Copyright -->
+        </footer>
     </footer>
-</footer>
+
 
 </body>
 
