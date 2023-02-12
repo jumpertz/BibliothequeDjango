@@ -1,23 +1,46 @@
-from django.contrib.auth.models import AbstractUser, Group, Permission
+from django.contrib.auth.models import AbstractUser, Group, Permission, User
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 
 # Create your models here.
 # User model
 
 
-class User(AbstractUser):
-    name = models.CharField(max_length=100)
-    email = models.EmailField(max_length=100)
-    password = models.CharField(max_length=100)
-    phone = models.CharField(max_length=13)
-    created_at = models.DateTimeField(auto_now_add=True)
-    groups = models.ManyToManyField(Group, related_name='auth_groups')
-    user_permissions = models.ManyToManyField(
-        Permission, related_name='auth_permissions')
+class Users(User):
 
-    class Meta:
-        db_table = 'users'
+    def __str__(self):
+        return self.username
+
+    @property
+    def is_staff(self):
+        return self.is_superuser
+
+    def has_perm(self, perm, obj=None):
+        return self.is_superuser
+
+    def has_module_perms(self, app_label):
+        return self.is_superuser
+
+    userGroups = models.ManyToManyField(
+        Group,
+        verbose_name='groups',
+        blank=True,
+        help_text=_(
+            'The groups this user belongs to. A user will get all permissions '
+            'granted to each of their groups.'
+        ),
+        related_name='user_set_custom',
+        related_query_name='user',
+    )
+    users_permissions = models.ManyToManyField(
+        Permission,
+        verbose_name='user permissions',
+        blank=True,
+        help_text='Specific permissions for this user.',
+        related_name='user_set_custom',
+        related_query_name='user',
+    )
 
 
 # Book model
