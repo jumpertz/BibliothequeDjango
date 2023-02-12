@@ -1,12 +1,15 @@
+from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
+from django.template.context_processors import request
 from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.views import LogoutView
+
 
 
 class SignUpView(generic.CreateView):

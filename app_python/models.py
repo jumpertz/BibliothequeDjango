@@ -72,8 +72,6 @@ class Bookseller(models.Model):
 
 
 # BookLibrary model
-
-
 class BookLibrary(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     library = models.ForeignKey(Library, on_delete=models.CASCADE)
@@ -81,8 +79,6 @@ class BookLibrary(models.Model):
 
 
 # BookUser model
-
-
 class BookUser(models.Model):
     book_library = models.ForeignKey(BookLibrary, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
