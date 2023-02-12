@@ -40,9 +40,13 @@ class Books(generic.TemplateView):
             thumbnail = self.FILES.get('thumbnail', None)
             description = self.POST['description']
             collection = self.POST['collection']
+            idUer = self.user.id
+
+            print (idUer)
 
             book = Book(title=title, author=author, thumbnail=thumbnail,
                         description=description, collection=collection)
+            bo
             book.save()
 
             return redirect('index_books')

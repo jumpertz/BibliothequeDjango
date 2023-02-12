@@ -35,19 +35,17 @@ class Libraries(generic.TemplateView):
     @login_required
     def add(self):
         if self.method == "POST":
-            title = self.POST['title']
-            author = self.POST['author']
-            thumbnail = self.FILES.get('thumbnail', None)
-            description = self.POST['description']
-            collection = self.POST['collection']
-
-            book = Book(title=title, author=author, thumbnail=thumbnail,
-                        description=description, collection=collection)
-            book.save()
-
-            return redirect('index_books')
-
-        return render(self, 'pages/books/new.html')
+            name = self.POST['name'],
+            address = self.POST['address'],
+            city = self.POST['city'],
+            zipcode = self.POST['zipcode'],
+            country = self.POST['country'],
+            owner_id = self.user.id
+            
+            library = Library(name=name, address=address, city=city,
+                        zipcode=zipcode, country=country, owner_id=owner_id)
+            library.save()
+        return render(self, 'pages/libraries/new.html')
 
     @login_required
     def delete(self, id):

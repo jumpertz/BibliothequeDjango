@@ -27,6 +27,18 @@ services:
     networks:
       python-networks:
 
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - '8080:8080'
+    depends_on:
+      - db
+    links:
+      - db
+    networks:
+      python-networks:
+
 volumes:
   django-data: {}
 networks:
